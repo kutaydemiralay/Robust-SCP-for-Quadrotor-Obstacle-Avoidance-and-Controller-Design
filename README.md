@@ -40,6 +40,11 @@ To address challenges in trajectory optimization under disturbances such as wind
 
 
 
+![Robust SCP-MPC, added with Wind-Adaptive Residual Correction  ](./images/SCPMPCwind.png)
+
+**Figure 4:** The node violation score remains 0.0 despite the presence of strong wind. The fuel cost has now decreased to 343.01 from 351.65, achieved by adding the Wind-Adaptive Residual Correction (WARC) technique as a lower-level robustness layer beneath the existing robustifying MPC framework.
+
+
 ### Future Work: Developing a Robust Low-Level Controller
 
 The current MPC-style approach alone appears insufficient for optimal trajectory planning under strong disturbances like wind. To improve this, future work will focus on developing a robust controller that works at a lower level than MPC. Options being considered include H-infinity synthesis or funnel synthesis, which would complement the MPC framework by ensuring robust trajectory optimization under dynamic conditions.
