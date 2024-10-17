@@ -72,6 +72,8 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
 
 We assumed that wind remains constant, but in reality, wind conditions fluctuate. As a result, the wind effect from previous data may not perfectly match the wind effect at the current node. Future work will involve developing a technique, potentially building upon certain wind assumptions, to mathematically justify that a modified version of Wind-Adaptive Residual Correction (WARC) will consistently improve robustness under specific conditions.
 
+![An idea on assumption of wind](./images/WindPossible.png)
+**Figure 5:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
 
 
 
