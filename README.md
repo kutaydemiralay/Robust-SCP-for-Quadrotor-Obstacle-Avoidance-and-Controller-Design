@@ -39,6 +39,29 @@ To address challenges in trajectory optimization under disturbances such as wind
 **Figure 3:** The node violation score is now 0.0 despite the presence of strong wind. However, the fuel cost has increased to 351.65, which is nearly 10 times higher than in the case without wind. This indicates that while the trajectory is robust, it is not optimal in terms of fuel efficiency.
 
 
+### Wind-Adaptive Residual Correction (WARC) technique:
+To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm, I use a novel technique to figure out the effect of wind from the previous node step.
+
+#### Method:
+1. **Wind Effect Estimation**:
+   - After applying the control inputs calculated in the previous time step, I check where the drone ends up at the current node (using sensor data).
+   - I compare this actual position (under wind) with where it would have been without wind. The deviation provides the impact of wind at that step.
+
+2. **Wind Slope Calculation**:
+   - By calculating the derivative (slope) of the displacement caused by the wind, I derive a correction factor to account for the wind disturbance.
+   - This wind slope is added into the First-Order Hold (FOH) discretized matrices:
+     \[
+     x_{k+1} = A_k x_k + B_k u_k + B^+_k u_{k+1} + z_k
+     \]
+     where \( z_k \) (in the code, `z_bar`) represents the nonlinear residual, which accounts for the difference between the actual nonlinear system behavior and the linearized dynamics.
+
+3. **Modification of `z_bar`**:
+   - I modify `z_bar` to account for the wind's effect on the system. For the next time step, I use the wind effect from the previous step, assuming similar conditions in the upcoming step. 
+   - This adjustment helps reduce drift caused by the wind without modifying the quadcopter's dynamics directly.
+
+4. **MPC Integration**:
+   - The wind information is incorporated into each MPC step, allowing the quadcopter to adjust its trajectory in real time.
+   - This technique continuously corrects the trajectory using wind data while the main SCP algorithm operates as usual.
 
 ![Robust SCP-MPC, added with Wind-Adaptive Residual Correction  ](./images/SCPMPCwind.png)
 
