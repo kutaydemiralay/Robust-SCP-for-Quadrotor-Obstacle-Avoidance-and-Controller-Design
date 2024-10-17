@@ -68,9 +68,12 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
 **Figure 4:** The node violation score remains 0.0 despite the presence of strong wind. The fuel cost has now decreased to 343.01 from 351.65, achieved by adding the Wind-Adaptive Residual Correction (WARC) technique as a lower-level robustness layer beneath the existing robustifying MPC framework.
 
 
-### Future Work: Developing a Robust Low-Level Controller
+### Future Work
 
-The current MPC-style approach alone appears insufficient for optimal trajectory planning under strong disturbances like wind. To improve this, future work will focus on developing a robust controller that works at a lower level than MPC. Options being considered include H-infinity synthesis or funnel synthesis, which would complement the MPC framework by ensuring robust trajectory optimization under dynamic conditions.
+We assumed that wind remains constant, but in reality, wind conditions fluctuate. As a result, the wind effect from previous data may not perfectly match the wind effect at the current node. Future work will involve developing a technique, potentially building upon certain wind assumptions, to mathematically justify that a modified version of Wind-Adaptive Residual Correction (WARC) will consistently improve robustness under specific conditions.
+
+
+
 
 ### Simulink Controller Design
 
