@@ -73,6 +73,10 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
 
 
 
+![Convex half-spaces visualised  ](./images/halfspace.png)
+
+**Figure 5:** Four convex half-spaces visualized, guiding the drone to stay close to its central straight-line trajectory and discouraging large deviations.
+
 ### **Tracking-Style Approach**  
 
 The previous approach was ineffective as it resulted in excessive fuel consumption. In this new approach, we first solve the entire path using **Sequential Convex Programming (SCP)** once. Then, in a second iteration, for each control node in the original trajectory, we solve a new trajectory segment starting from the **current control node** to the **next control node** in the original path. This iterative process continues until the trajectory reaches the final endpoint at **(10, 0, 0)**.  
@@ -81,7 +85,7 @@ This method significantly reduces fuel costs compared to the previous approach.
 
 ![Tracking path in the presence of wind](./images/TrackSCP.png)  
 
-**Figure 5:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces.
+**Figure 6:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces.
 
 
 
@@ -90,7 +94,7 @@ This method significantly reduces fuel costs compared to the previous approach.
 We assumed that wind remains constant, but in reality, wind conditions fluctuate. As a result, the wind effect from previous data may not perfectly match the wind effect at the current node. Future work will involve developing a technique, potentially building upon certain wind assumptions, to mathematically justify that a modified version of Wind-Adaptive Residual Correction (WARC) will consistently improve robustness under specific conditions.
 
 ![An idea on assumption of wind](./images/WindPossible.png)
-**Figure 5:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
+**Figure 7:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
 
 
 
@@ -110,8 +114,8 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 
 ![Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design](./images/SimulinkMod.png)
 
-**Figure 3:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
+**Figure 8:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
 
 ![Quadcopter Trajectory Optimization](images/Trajoptgif.gif)
 
-**Figure 4:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
+**Figure 9:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
