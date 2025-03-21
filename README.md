@@ -89,12 +89,27 @@ This method significantly reduces fuel costs compared to the previous approach b
 
 
 
+### **Adding Safety Margin to tracking style approah**
+
+The previous approach was ineffective as it resulted in good enough fuel consumption, but there was node violation because of tight space passing.  
+To overcome this, I added **safety margin**, which is basically the max value the wind vector can take in any direction (max norm).
+
+With this method, we never approach the obstacles closer than the safety margin, so even in the worst-case wind scenario, we cannot hit the obstacles.  
+Yet, this technique kind of lengthens the path slightly, but it is still much shorter than previous conservative techniques.
+
+![Safety Margin added to tracking style approach](./images/safetymargin.png)  
+
+**Figure 7:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind.
+
+
+
+
 ### Future Work
 
 We assumed that wind remains constant, but in reality, wind conditions fluctuate. As a result, the wind effect from previous data may not perfectly match the wind effect at the current node. Future work will involve developing a technique, potentially building upon certain wind assumptions, to mathematically justify that a modified version of Wind-Adaptive Residual Correction (WARC) will consistently improve robustness under specific conditions.
 
 ![An idea on assumption of wind](./images/WindPossible.png)
-**Figure 7:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
+**Figure 8:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
 
 
 
@@ -114,8 +129,8 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 
 ![Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design](./images/SimulinkMod.png)
 
-**Figure 8:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
+**Figure 9:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
 
 ![Quadcopter Trajectory Optimization](images/Trajoptgif.gif)
 
-**Figure 9:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
+**Figure 10:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
