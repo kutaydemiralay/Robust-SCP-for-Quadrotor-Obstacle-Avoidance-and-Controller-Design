@@ -81,7 +81,7 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
 
 The previous approach was ineffective as it resulted in excessive fuel consumption. In this new approach, we first solve the entire path using **Sequential Convex Programming (SCP)** once. Then, in a second iteration, for each control node in the original trajectory, we solve a new trajectory segment starting from the **current control node** to the **next control node** in the original path. This iterative process continues until the trajectory reaches the final endpoint at **(10, 0, 0)**.  
 
-This method significantly reduces fuel costs compared to the previous approach.  
+This method significantly reduces fuel costs compared to the previous approach by guiding the drone through the narrow passage between obstacles—similar to the zero-wind case where it finds the original shortest path. However, a small node violation is observed. This occurs because, while navigating through tight spaces, the drone gets much closer to the obstacles, making it more vulnerable to wind disturbances that could push it toward them.
 
 ![Tracking path in the presence of wind](./images/TrackSCP.png)  
 
