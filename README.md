@@ -63,6 +63,10 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
    - The wind information is incorporated into each MPC step, allowing the quadcopter to adjust its trajectory in real time.
    - This technique continuously corrects the trajectory using wind data while the main SCP algorithm operates as usual.
 
+5. **Convex Halfplane Integration**:
+   -To discourage the quadcopter from taking large deviations or wide turns, convex half-planes are defined along the reference trajectory and added as soft constraints. These constraints penalize the drone for straying too far from the desired path, increasing the cost in the optimization problem. As a result, the optimizer naturally favors shorter, more direct routes, leading to reduced fuel consumption.
+
+   
 ![Robust SCP-MPC, added with Wind-Adaptive Residual Correction  ](./images/SCPMPCwind.png)
 
 **Figure 4:** The node violation score remains 0.0 despite the presence of strong wind. The fuel cost has now decreased to 343.01 from 351.65, achieved by adding the Wind-Adaptive Residual Correction (WARC) technique as a lower-level robustness layer beneath the existing robustifying MPC framework.
