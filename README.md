@@ -193,6 +193,31 @@ We assumed that wind remains constant, but in reality, wind conditions fluctuate
 ![An idea on assumption of wind](./images/WindPossible.png)
 **Figure 8:** An illustration of the wind assumption, showing a conceptual approach for calculating the maximum allowable wind disturbance the system can handle.
 
+### Funnel Synthesis for Robust Trajectory Tracking
+
+Another approach we explore is **funnel synthesis**, inspired by  
+_Optimization-based Constrained Funnel Synthesis for Systems with Lipschitz Nonlinearities via Numerical Optimal Control_  
+by **Taewan Kim**.
+
+The goal is to design **time-varying ellipsoidal tubes** (funnels) around a nominal trajectory that keep a **nonlinear system safe and robust** under bounded disturbances, while satisfying both **state and control constraints**.
+
+We use **Lyapunov functions** to ensure:
+
+- **Invariance**: all trajectories starting inside the funnel remain inside the funnel, even under bounded disturbances.
+- **Safety**: by construction, the system avoids obstacles and respects input/state bounds.
+
+This is formulated as a **Differential Linear Matrix Inequality (DLMI)** problem.
+
+To make the problem tractable, the DLMI is converted into a **Semidefinite Program (SDP)** using:
+
+- Multiple shooting
+- Optimal control discretization techniques
+
+---
+
+![Start of funnel synthesis on nominal trajectory without wind](./images/FunnelS.png)
+
+**Figure 9:** Illustration of ellipsoidal funnels constructed at each node along the SCP-generated nominal trajectory (without wind). These funnels define robust tracking tubes that can tolerate disturbances while remaining within safe, constraint-satisfying regions.
 
 
 ### Simulink Controller Design
