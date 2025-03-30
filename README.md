@@ -97,7 +97,7 @@ To overcome this, I added **safety margin**, which is basically the max value th
 With this method, we never approach the obstacles closer than the safety margin, so even in the worst-case wind scenario, we cannot hit the obstacles.  
 Yet, this technique kind of lengthens the path slightly, but it is still much shorter than previous conservative techniques.
 
-![Safety Margin added to tracking style approach](./images/safetymargin.png)  
+![Safety Margin added to tracking style approach](./images/safetymagin.png)  
 
 **Figure 7:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind.
 
