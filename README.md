@@ -85,7 +85,7 @@ This method significantly reduces fuel costs compared to the previous approach b
 
 ![Tracking path in the presence of wind](./images/TrackSCP.png)  
 
-**Figure 6:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces.
+**Figure 6:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces. (The spikes illustrate the discrete effect of wind disturbances at each node)
 
 
 
@@ -99,7 +99,7 @@ Yet, this technique kind of lengthens the path slightly, but it is still much sh
 
 ![Safety Margin added to tracking style approach](./images/safetymagin.png)  
 
-**Figure 7:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind.
+**Figure 7:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind (The spikes illustrate the discrete effect of wind disturbances at each node)
 
 
 
