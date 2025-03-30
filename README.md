@@ -30,7 +30,7 @@ However, when we add a constant wind force that the algorithm's dynamics are not
 
 
 
-### 🎯 Adding LQR-Style Feedback Tracking Controller
+### Adding LQR-Style Feedback Tracking Controller
 
 To handle wind disturbances, we first implement a simple **LQR-based tracking controller**. This controller applies feedback at each step to bring the drone back toward the SCP-generated nominal trajectory.
 
@@ -64,7 +64,7 @@ u_k = u_ref,k - K (x_k - x_ref,k)
 
 ---
 
-### 📘 Riccati Equation and Gain Matrix
+###  Riccati Equation and Gain Matrix
 
 To compute `K`, we solve the Discrete-time Algebraic Riccati Equation (DARE):
 
