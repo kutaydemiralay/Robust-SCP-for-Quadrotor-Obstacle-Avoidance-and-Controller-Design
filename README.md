@@ -28,6 +28,88 @@ However, when we add a constant wind force that the algorithm's dynamics are not
 
 **Figure 2:** As you can see, the node violation score is around 41.72, meaning some of the nodes violate the obstacles in the route.
 
+
+
+### 🎯 Adding LQR-Style Feedback Tracking Controller
+
+To handle wind disturbances, we first implement a simple **LQR-based tracking controller**. This controller applies feedback at each step to bring the drone back toward the SCP-generated nominal trajectory.
+
+---
+
+## 💡 LQR Feedback Control for Trajectory Tracking
+
+We consider a linearized discrete-time system:
+
+```
+x_{k+1} = A x_k + B u_k
+```
+
+The Linear Quadratic Regulator (LQR) computes an optimal control law that minimizes the cost:
+
+```
+J = ∑ (x_kᵀ Q x_k + u_kᵀ R u_k)
+```
+
+The optimal feedback control is:
+
+```
+u_k = -K x_k
+```
+
+Or, in **trajectory tracking form** (used in this project):
+
+```
+u_k = u_ref,k - K (x_k - x_ref,k)
+```
+
+---
+
+### 📘 Riccati Equation and Gain Matrix
+
+To compute `K`, we solve the Discrete-time Algebraic Riccati Equation (DARE):
+
+```
+P = Aᵀ P A - Aᵀ P B (Bᵀ P B + R)⁻¹ Bᵀ P A + Q
+```
+
+Here, `P` is the **cost-to-go matrix** — it reflects how costly it is to be in a given state.  
+It's a smarter, dynamics-aware version of `Q`.
+
+Then, the optimal feedback gain matrix is:
+
+```
+K = (Bᵀ P B + R)⁻¹ Bᵀ P A
+```
+
+This balances:
+- **State tracking error** (`Q`)
+- **Control effort** (`R`)
+
+---
+
+We compute `K` at each timestep using time-varying linearizations around the SCP trajectory:
+
+```python
+from scipy.linalg import solve_discrete_are
+
+P = solve_discrete_are(A, B, Q_lqr, R_lqr)
+K = np.linalg.inv(B.T @ P @ B + R_lqr) @ (B.T @ P @ A)
+K_seq.append(K)
+```
+
+---
+
+![LQR tracking (with wind) vs Nominal trajectory (no wind)](./images/LQR.png)
+
+**Figure 3:** With aggressive tracking cost, LQR can closely follow the nominal trajectory even under wind disturbance.  
+However, **since LQR has no knowledge of obstacle constraints**, it may result in **significant obstacle violations**.  
+To address this, we need a **more robust and constraint-aware approach**, such as an **MPC-style SCP** method.
+
+
+
+
+
+
 ### Adding an MPC-Style Approach
 
 To address challenges in trajectory optimization under disturbances such as wind, we have introduced an MPC-style approach to the Sequential Convex Programming (SCP) code. In this approach, the remaining trajectory is recalculated at each node, making the algorithm more responsive and adaptive to disturbances.
@@ -36,7 +118,7 @@ To address challenges in trajectory optimization under disturbances such as wind
 
 ![Robust SCP-MPC in the presence of wind ](./images/SCPMPC.png)
 
-**Figure 3:** The node violation score is now 0.0 despite the presence of strong wind. However, the fuel cost has increased to 351.65, which is nearly 10 times higher than in the case without wind. This indicates that while the trajectory is robust, it is not optimal in terms of fuel efficiency.
+**Figure 4:** The node violation score is now 0.0 despite the presence of strong wind. However, the fuel cost has increased to 351.65, which is nearly 10 times higher than in the case without wind. This indicates that while the trajectory is robust, it is not optimal in terms of fuel efficiency.
 
 
 ### Wind-Adaptive Residual Correction (WARC) technique:
@@ -69,13 +151,13 @@ To add lower-level robustness underneath the MPC of my quadcopter SCP algorithm,
    
 ![Robust SCP-MPC, added with Wind-Adaptive Residual Correction  ](./images/SCPMPCwind.png)
 
-**Figure 4:** The node violation score remains 0.0 despite the presence of strong wind. The fuel cost has now decreased to 343.01 from 351.65, achieved by adding the Wind-Adaptive Residual Correction (WARC) technique as a lower-level robustness layer beneath the existing robustifying MPC framework.
+**Figure 5:** The node violation score remains 0.0 despite the presence of strong wind. The fuel cost has now decreased to 343.01 from 351.65, achieved by adding the Wind-Adaptive Residual Correction (WARC) technique as a lower-level robustness layer beneath the existing robustifying MPC framework.
 
 
 
 ![Convex half-spaces visualised  ](./images/halfspace.png)
 
-**Figure 5:** Four convex half-spaces visualized, guiding the drone to stay close to its central straight-line trajectory and discouraging large deviations.
+**Figure 6:** Four convex half-spaces visualized, guiding the drone to stay close to its central straight-line trajectory and discouraging large deviations.
 
 ### **Tracking-Style Approach**  
 
@@ -85,7 +167,7 @@ This method significantly reduces fuel costs compared to the previous approach b
 
 ![Tracking path in the presence of wind](./images/TrackSCP.png)  
 
-**Figure 6:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces. (The spikes illustrate the discrete effect of wind disturbances at each node)
+**Figure 7:** Tracking path in the presence of wind. The new approach follows the original path more closely than the previous **MPC-SCP** method. This improves fuel efficiency but increases the risk of collisions, as the vehicle passes through tighter spaces. (The spikes illustrate the discrete effect of wind disturbances at each node)
 
 
 
@@ -99,7 +181,7 @@ Yet, this technique kind of lengthens the path slightly, but it is still much sh
 
 ![Safety Margin added to tracking style approach](./images/safetymagin.png)  
 
-**Figure 7:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind (The spikes illustrate the discrete effect of wind disturbances at each node)
+**Figure 8:** Safety margin added to tracking-style approach — drone still tries to fit through tight spaces, but preserves a safe distance from obstacles, making it harder to hit them even under wind (The spikes illustrate the discrete effect of wind disturbances at each node)
 
 
 
@@ -129,8 +211,8 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 
 ![Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design](./images/SimulinkMod.png)
 
-**Figure 9:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
+**Figure 10:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
 
 ![Quadcopter Trajectory Optimization](images/Trajoptgif.gif)
 
-**Figure 10:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
+**Figure 11:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
