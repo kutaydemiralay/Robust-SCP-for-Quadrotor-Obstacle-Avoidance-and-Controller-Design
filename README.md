@@ -241,3 +241,9 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 ![Quadcopter Trajectory Optimization](images/Trajoptgif.gif)
 
 **Figure 11:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
+
+
+
+![Real Hardware Flight](images/flight.gif)
+
+
