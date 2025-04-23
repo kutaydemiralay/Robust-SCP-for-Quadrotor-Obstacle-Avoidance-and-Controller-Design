@@ -243,7 +243,12 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 **Figure 11:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
 
 
+### Real-world hardware tracking test using precomputed references
+
+On real hardware — a drone with similar physical properties to the one used in simulation — I will send the reference positions computed offline to our lab's drone. I will log the control inputs required for the drone to track that trajectory, in order to verify two things: (1) whether the drone can accurately follow the planned path, and (2) whether the control inputs observed in real life match those computed by the Python model. If not, I will quantify the deviation.
+
 
 ![Real Hardware Flight](images/flight.gif)
+**Figure 12:** . Real-world hardware tracking test in lab environment
 
 
