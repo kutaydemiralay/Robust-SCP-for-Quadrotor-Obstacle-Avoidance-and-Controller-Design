@@ -215,7 +215,7 @@ To make the problem tractable, the DLMI is converted into a **Semidefinite Progr
 
 ---
 
-![Start of funnel synthesis on nominal trajectory without wind](./images/FunnelSynthesis.png)
+![Start of funnel synthesis on nominal trajectory without wind](./images/FunelSynthesis.png)
 
 **Figure 9:** Illustration of ellipsoidal funnels constructed at each node along the SCP-generated nominal trajectory (without wind). These funnels define robust tracking tubes that can tolerate disturbances while remaining within safe, constraint-satisfying regions.
 
@@ -248,7 +248,6 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 On real hardware — a drone with similar physical properties to the one used in simulation — I will send the reference positions computed offline to our lab's drone. I will log the control inputs required for the drone to track that trajectory, in order to verify two things: (1) whether the drone can accurately follow the planned path, and (2) whether the control inputs observed in real life match those computed by the Python model. If not, I will quantify the deviation.
 
 
-![Real Hardware Flight](images/flight.gif)
-**Figure 12:** . Real-world hardware tracking test in lab environment
+
 
 
