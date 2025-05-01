@@ -215,7 +215,7 @@ To make the problem tractable, the DLMI is converted into a **Semidefinite Progr
 
 ---
 
-![Start of funnel synthesis on nominal trajectory without wind](./images/FunnelS.png)
+![Start of funnel synthesis on nominal trajectory without wind](./images/FunnelSynthesis.png)
 
 **Figure 9:** Illustration of ellipsoidal funnels constructed at each node along the SCP-generated nominal trajectory (without wind). These funnels define robust tracking tubes that can tolerate disturbances while remaining within safe, constraint-satisfying regions.
 
