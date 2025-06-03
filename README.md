@@ -1,4 +1,4 @@
-# MPC-Style-SCP-for-Quadrotor-Obstacle-Avoidance and Controller Design
+# Robust-SCP-for-Quadrotor-Obstacle-Avoidance and Controller Design-In-The-Presence-of-Wind
 
 **Robust Sequential Convex Programming (SCP) for Quadrotor Obstacle Avoidance**
 
