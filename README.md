@@ -259,3 +259,7 @@ On real hardware — a drone with similar physical properties to the one used in
 
 
 
+![Quadcopter Trajectory Optimization](images/flight.gif)
+
+**Figure 12:** . Real Hardware Simulation
+
