@@ -4,7 +4,7 @@
 
 This is an ongoing project, and more work will be added!
 
-In this project, our goal is to apply and compare various robustification techniques to a Sequential Convex Programming (SCP) framework for quadrotor obstacle avoidance.. SCP works by creating convex subproblems from a non-convex problem—in our case, 3D quadrotor obstacle avoidance. This is achieved by linearizing the non-convexities and approximating them into convex subproblems, which are then solved iteratively within a trust region.
+In this project, our goal is to apply and compare various robustification techniques to a Sequential Convex Programming (SCP) framework for quadrotor obstacle avoidance. SCP works by creating convex subproblems from a non-convex problem—in our case, 3D quadrotor obstacle avoidance. This is achieved by linearizing the non-convexities and approximating them into convex subproblems, which are then solved iteratively within a trust region.
 
 You can find the code for the Obstacle Avoidance SCP algorithm (A significant portion is currently censored as this is unpublished work. For access to the full code, feel free to email me).
 
@@ -26,7 +26,7 @@ However, when we add a constant wind force that the algorithm's dynamics are not
 
 ![SCP Quadrotor Obstacle Avoidance Under Presence of Wind](./images/SCPwow.png)
 
-**Figure 2:** As you can see, the node violation score is around 41.72, meaning some of the nodes violate the obstacles in the route.
+**Figure 2:** As you can see, the node violation score is around 339.72, meaning some of the nodes violate the obstacles in the route.
 
 
 
@@ -118,7 +118,7 @@ To address challenges in trajectory optimization under disturbances such as wind
 
 ![Robust SCP-MPC in the presence of wind ](./images/SCPMPC.png)
 
-**Figure 4:** The node violation score is now 0.0 despite the presence of strong wind. However, the fuel cost has increased to 351.65, which is nearly 10 times higher than in the case without wind. This indicates that while the trajectory is robust, it is not optimal in terms of fuel efficiency.
+**Figure 4:** The node violation score is now 0.0 despite the presence of strong wind. However, the fuel cost has increased to 351.65, which is higher than in the case without wind. This indicates that while the trajectory is robust, it is not optimal in terms of fuel efficiency.
 
 
 ### Wind-Adaptive Residual Correction (WARC) technique:
