@@ -6,6 +6,8 @@ This is an ongoing project, and more work will be added!
 
 In this project, our goal is to apply and compare various robustification techniques to a Sequential Convex Programming (SCP) framework for quadrotor obstacle avoidance. SCP works by creating convex subproblems from a non-convex problem—in our case, 3D quadrotor obstacle avoidance. This is achieved by linearizing the non-convexities and approximating them into convex subproblems, which are then solved iteratively within a trust region.
 
+We will incorporate methods such as MPC, LQR, Simulink-based simulations, PID control, WARC, convex halfplanes, and funnel synthesis to robustify SCP against wind disturbances, which the SCP framework does not naturally account for.
+
 You can find the code for the Obstacle Avoidance SCP algorithm (A significant portion is currently censored as this is unpublished work. For access to the full code, feel free to email me).
 
 [KutayDemiralay_Quadrotor_Obstacle_Avoidance_SimulinkData_Censored.ipynb](./KutayDemiralay_Quadrotor_Obstacle_Avoidance_SimulinkData_Censored.ipynb)
