@@ -15,7 +15,7 @@ You can find the code for the Obstacle Avoidance SCP algorithm (A significant po
 
 Below is how the SCP code performs without wind:
 
-![SCP Obstacle Avoidance Without Wind](./images/SCPww.png)
+![SCP Obstacle Avoidance Without Wind](./images/SCPWO.png)
 
 
 **Figure 1:** As you can see, the node violation score is 0.0, meaning none of the nodes violate the obstacles in the route.
