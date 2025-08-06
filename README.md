@@ -263,15 +263,21 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 
 **Figure 10:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
 
+![Simulink StateFlow Block ](./images/Stateflow.png)
+
+**Figure 11:** . Simulink StateFlow Block 
+
+
+
 ![Quadcopter Trajectory Optimization](images/Trajoptgif.gif)
 
-**Figure 11:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
+**Figure 12:** . Simulink Controller 3D Animation GIF (Same Scenario as Figure 1)
 
 
 
 ![Quadcopter Trajectory Optimization](images/ez.gif)
 
-**Figure 12:** . Simulink Controller 3D Animation GIF: No Wind-Resisting PID Controller in Lateral Motion (Same Scenario as Figure 2)
+**Figure 13:** . Simulink Controller 3D Animation GIF: No Wind-Resisting PID Controller in Lateral Motion (Same Scenario as Figure 2)
 
 
 ### Real-world hardware tracking test using precomputed references
