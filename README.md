@@ -246,12 +246,13 @@ The mode switching is triggered using two thresholds:
 
 The Stateflow logic is:
 
-```matlab
 if (e_pos > wind_threshold) || (min_obstacle_distance < obstacle_threshold)
     mode = 2;   % Aggressive PID for robust tracking
 else
     mode = 1;   % Normal PID for nominal conditions
 end
+
+
 
 You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 
