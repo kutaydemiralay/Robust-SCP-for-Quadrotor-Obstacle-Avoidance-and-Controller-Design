@@ -236,7 +236,7 @@ You can find the Simulink Model for the Quadcopter Obstalce Avoidance :
 [QuadcopterObstacleAvoidanceSimulinkModel.slx](./QuadcopterObstacleAvoidanceSimulinkModel.slx)
 
 
-![Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design](./images/SimulinkMod.png)
+![Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design](./images/Simulink/Stateflow.png)
 
 **Figure 10:** . Simulink Main Block Diagram for Obstacle Avoidance Quadcopter Design
 
